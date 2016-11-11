@@ -15,7 +15,7 @@ import {
 
 export default class GiftedAvatar extends React.Component {
   setAvatarColor() {
-    const userName = this.props.user.name || '';
+    const userName = this.props.user.displayName || '';
     const name = userName.toUpperCase().split(' ');
     if (name.length === 1) {
       this.avatarName = `${name[0].charAt(0)}`;
@@ -68,7 +68,7 @@ export default class GiftedAvatar extends React.Component {
   }
 
   render() {
-    if (!this.props.user.name && !this.props.user.avatar) {
+    if (!this.props.user.displayName && !this.props.user.avatar) {
       // render placeholder
       return (
         <View

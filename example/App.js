@@ -196,7 +196,7 @@ export default class Example extends React.Component {
         isLoadingEarlier={this.state.isLoadingEarlier}
 
         user={{
-          _id: 1, // sent messages should have same user._id
+          _id: 1, // sent messages should have same user.uid
         }}
 
         renderActions={this.renderCustomActions}

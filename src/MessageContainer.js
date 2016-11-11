@@ -115,7 +115,8 @@ export default class MessageContainer extends React.Component {
       currentMessage: message,
       previousMessage: message.previousMessage,
       nextMessage: message.nextMessage,
-      position: message.user._id === this.props.user._id ? 'right' : 'left',
+      // position: message.user.uid === this.props.user.uid ? 'right' : 'left',
+      position: message.isBot ? 'left' : 'right',
     };
 
     if (this.props.renderMessage) {

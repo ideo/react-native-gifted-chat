@@ -27,7 +27,7 @@ export default class Message extends React.Component {
 
   isSameUser(currentMessage = {}, diffMessage = {}) {
     if (diffMessage.user && currentMessage.user) {
-      if (diffMessage.user._id === currentMessage.user._id) {
+      if (diffMessage.user.uid === currentMessage.user.uid) {
         return true;
       }
     }
@@ -64,7 +64,7 @@ export default class Message extends React.Component {
   }
 
   renderAvatar() {
-    if (this.props.user._id !== this.props.currentMessage.user._id) {
+    if (this.props.user.uid !== this.props.currentMessage.user.uid) {
       const {containerStyle, ...other} = this.props;
       const avatarProps = {
         ...other,
