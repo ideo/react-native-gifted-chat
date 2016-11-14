@@ -114,11 +114,11 @@ export default class Example extends React.Component {
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, {
-          _id: Math.round(Math.random() * 1000000),
+          id: Math.round(Math.random() * 1000000),
           text: text,
           createdAt: new Date(),
           user: {
-            _id: 2,
+            id: 2,
             name: 'React Native',
             // avatar: 'https://facebook.github.io/react/img/logo_og.png',
           },
@@ -196,7 +196,7 @@ export default class Example extends React.Component {
         isLoadingEarlier={this.state.isLoadingEarlier}
 
         user={{
-          _id: 1, // sent messages should have same user.uid
+          id: 1, // sent messages should have same user.uid
         }}
 
         renderActions={this.renderCustomActions}

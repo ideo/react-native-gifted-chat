@@ -39,11 +39,11 @@ class Example extends React.Component {
     this.setState({
       messages: [
         {
-          _id: 1,
+          id: 1,
           text: 'Hello developer',
           createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
           user: {
-            _id: 2,
+            id: 2,
             name: 'React Native',
             avatar: 'https://facebook.github.io/react/img/logo_og.png',
           },
@@ -64,7 +64,7 @@ class Example extends React.Component {
         messages={this.state.messages}
         onSend={this.onSend}
         user={{
-          _id: 1,
+          id: 1,
         }}
       />
     );
@@ -78,11 +78,11 @@ See [example/App.js](example/App.js)
 ## Message object
 ```javascript
 {
-  _id: 1,
+  id: 1,
   text: 'My message',
   createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
   user: {
-    _id: 2,
+    id: 2,
     name: 'React Native',
     avatar: 'https://facebook.github.io/react/img/logo_og.png',
   },
@@ -94,7 +94,7 @@ See [example/App.js](example/App.js)
 ## Props
 
 - **`messages`** _(Array)_ - messages to display
-- **`user`** _(Object)_ - user sending the messages `{_id, name, avatar}`
+- **`user`** _(Object)_ - user sending the messages `{id, name, avatar}`
 - **`onSend`** _(Function)_ - function to call when sending a message
 - **`locale`** _(String)_ - localize the dates
 - **`isAnimated`** _(Bool)_ - animates the view when the keyboard appears
