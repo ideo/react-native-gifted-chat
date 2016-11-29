@@ -20,12 +20,20 @@ export default class MessageImage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    borderTopLeftRadius: 13,
+    borderTopRightRadius: 13,
+    overflow: 'hidden'
   },
   image: {
-    width: 150,
-    height: 100,
-    borderRadius: 13,
-    margin: 3,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 3,
+    right: 0,
     resizeMode: 'cover',
   },
 });
