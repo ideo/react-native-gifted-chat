@@ -63,13 +63,6 @@ export default class Bubble extends React.Component {
     return null;
   }
 
-  renderCustomView() {
-    if (this.props.renderCustomView) {
-      return this.props.renderCustomView(this.props);
-    }
-    return null;
-  }
-
   onLongPress() {
     if (this.props.onLongPress) {
       this.props.onLongPress(this.context);
@@ -105,7 +98,6 @@ export default class Bubble extends React.Component {
             {...this.props.touchableProps}
           >
             <View>
-              {this.renderCustomView()}
               {this.renderMessageImage()}
               {this.renderMessageText()}
               {this.renderTime()}
