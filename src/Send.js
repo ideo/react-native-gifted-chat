@@ -14,37 +14,40 @@ export default class Send extends React.Component {
   //   return false;
   // }
   render() {
-    if (this.props.text.trim().length > 0) {
+    const hasText = this.props.text.trim().length > 0;
+
+    // if(hasText) {
       return (
         <TouchableOpacity
-          style={[styles.container, this.props.containerStyle]}
+          style={[styles.container]}
           onPress={() => {
-            this.props.onSend({text: this.props.text.trim()}, true);
+            hasText && this.props.onSend({text: this.props.text.trim()}, true);
           }}
           accessibilityTraits="button"
         >
-          <Text style={[styles.text, this.props.textStyle]}>{this.props.label}</Text>
+          <Text style={[styles.text, this.props.textStyle, !hasText && styles.textDisabled]}>{this.props.label}</Text>
         </TouchableOpacity>
       );
-    }
-    return <View/>;
+    // }
+    // return <View/>;
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 44,
     justifyContent: 'flex-end',
+    marginBottom: 13,
+    marginRight: 14
   },
   text: {
     color: '#0084ff',
     fontWeight: '600',
     fontSize: 17,
     backgroundColor: 'transparent',
-    marginBottom: 12,
-    marginLeft: 10,
-    marginRight: 10,
   },
+  textDisabled: {
+    color: '#cccccc'
+  }
 });
 
 Send.defaultProps = {

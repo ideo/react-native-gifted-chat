@@ -49,7 +49,7 @@ export default class InputToolbar extends React.Component {
     return (
       <View style={[styles.container, this.props.containerStyle]}>
         <View style={[styles.primary, this.props.primaryStyle]}>
-          {this.renderActions()}
+          {/*this.renderActions()*/}
           {this.renderComposer()}
           {this.renderSend()}
         </View>
