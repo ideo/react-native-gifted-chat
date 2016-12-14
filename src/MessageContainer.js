@@ -28,7 +28,8 @@ export default class MessageContainer extends React.Component {
 
     const messagesData = this.prepareMessages(props.messages);
     this.state = {
-      dataSource: dataSource.cloneWithRows(messagesData.blob, messagesData.keys)
+      dataSource: dataSource.cloneWithRows(messagesData.blob, messagesData.keys),
+      isBubbleAnimationEnabled: false
     };
   }
 
@@ -52,6 +53,9 @@ export default class MessageContainer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if(this.props.messages.length !== nextProps.messages.length && this.props.messages.length !== 0) {
+      this.setState({ isBubbleAnimationEnabled: true });
+    }
     if (!shallowequal(this.props, nextProps)) {
       return true;
     }
@@ -116,6 +120,7 @@ export default class MessageContainer extends React.Component {
       previousMessage: message.previousMessage,
       nextMessage: message.nextMessage,
       position: message.user.uid === this.props.user.uid ? 'right' : 'left',
+      isBubbleAnimationEnabled: this.state.isBubbleAnimationEnabled
     };
 
     if (this.props.renderMessage) {
@@ -137,22 +142,22 @@ export default class MessageContainer extends React.Component {
 
   render() {
     return (
-      <View ref='container' style={{flex:1}}>
-        <ListView
-          enableEmptySections={true}
-          keyboardShouldPersistTaps={true}
-          automaticallyAdjustContentInsets={false}
-          initialListSize={20}
-          pageSize={20}
+        <View ref='container' style={{flex:1}}>
+          <ListView
+            enableEmptySections={true}
+            keyboardShouldPersistTaps={true}
+            automaticallyAdjustContentInsets={false}
+            initialListSize={20}
+            pageSize={20}
 
-          dataSource={this.state.dataSource}
+            dataSource={this.state.dataSource}
 
-          renderRow={this.renderRow}
-          renderHeader={this.renderFooter}
-          renderFooter={this.renderLoadEarlier}
-          renderScrollComponent={this.renderScrollComponent}
-        />
-      </View>
+            renderRow={this.renderRow}
+            renderHeader={this.renderFooter}
+            renderFooter={this.renderLoadEarlier}
+            renderScrollComponent={this.renderScrollComponent}
+          />
+        </View>
     );
   }
 }

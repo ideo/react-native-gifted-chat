@@ -9,6 +9,7 @@ import moment from 'moment';
 import Avatar from './Avatar';
 import Bubble from './Bubble';
 import Day from './Day';
+import FadeInUp from './FadeInUp';
 
 export default class Message extends React.Component {
 
@@ -78,7 +79,7 @@ export default class Message extends React.Component {
   }
 
   render() {
-    return (
+    const internal = (
       <View>
         {this.renderDay()}
         <View style={[styles[this.props.position].container, {
@@ -91,6 +92,7 @@ export default class Message extends React.Component {
         {this.renderCustomView()}
       </View>
     );
+    return this.props.isBubbleAnimationEnabled ? <FadeInUp>{internal}</FadeInUp> : internal;
   }
 
   renderCustomView() {
@@ -132,6 +134,7 @@ Message.defaultProps = {
   previousMessage: {},
   user: {},
   containerStyle: {},
+  isBubbleAnimationEnabled: true
 };
 
 Message.propTypes = {
@@ -147,4 +150,5 @@ Message.propTypes = {
     left: View.propTypes.style,
     right: View.propTypes.style,
   }),
+  isBubbleAnimationEnabled: React.PropTypes.bool.isRequired
 };
