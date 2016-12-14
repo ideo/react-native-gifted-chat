@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import isEmpty from 'lodash/isEmpty';
 
 import moment from 'moment';
 
@@ -65,7 +66,11 @@ export default class Message extends React.Component {
   }
 
   renderAvatar() {
-    if (this.props.user.uid !== this.props.currentMessage.user.uid) {
+    console.log(this.props.currentMessage.user.avatar);
+    const hasName = !isEmpty(this.props.currentMessage.user.displayName);
+    const hasAvatar = !isEmpty(this.props.currentMessage.user.avatar);
+
+    if (this.props.user.uid !== this.props.currentMessage.user.uid && (hasName || hasAvatar)) {
       const {containerStyle, ...other} = this.props;
       const avatarProps = {
         ...other,
@@ -79,7 +84,7 @@ export default class Message extends React.Component {
   }
 
   render() {
-    const internal = (
+    const guts = (
       <View>
         {this.renderDay()}
         <View style={[styles[this.props.position].container, {
@@ -92,7 +97,7 @@ export default class Message extends React.Component {
         {this.renderCustomView()}
       </View>
     );
-    return this.props.isBubbleAnimationEnabled ? <FadeInUp>{internal}</FadeInUp> : internal;
+    return this.props.isBubbleAnimationEnabled ? <FadeInUp>{guts}</FadeInUp> : guts;
   }
 
   renderCustomView() {
@@ -109,7 +114,7 @@ const styles = {
       flexDirection: 'row',
       alignItems: 'flex-end',
       justifyContent: 'flex-start',
-      marginLeft: 8,
+      marginLeft: 14,
       marginRight: 0,
     },
   }),
@@ -119,7 +124,7 @@ const styles = {
       alignItems: 'flex-end',
       justifyContent: 'flex-end',
       marginLeft: 0,
-      marginRight: 8,
+      marginRight: 14,
     },
   }),
 };
