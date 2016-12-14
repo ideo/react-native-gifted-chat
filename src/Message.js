@@ -66,7 +66,6 @@ export default class Message extends React.Component {
   }
 
   renderAvatar() {
-    console.log(this.props.currentMessage.user.avatar);
     const hasName = !isEmpty(this.props.currentMessage.user.displayName);
     const hasAvatar = !isEmpty(this.props.currentMessage.user.avatar);
 
