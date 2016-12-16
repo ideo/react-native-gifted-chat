@@ -10,6 +10,7 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view';
 import md5 from 'md5';
 import LoadEarlier from './LoadEarlier';
 import Message from './Message';
+import FadeInUp from './FadeInUp';
 
 export default class MessageContainer extends React.Component {
   constructor(props) {
@@ -120,13 +121,12 @@ export default class MessageContainer extends React.Component {
       previousMessage: message.previousMessage,
       nextMessage: message.nextMessage,
       position: message.user.uid === this.props.user.uid ? 'right' : 'left',
-      isBubbleAnimationEnabled: this.state.isBubbleAnimationEnabled
     };
 
     if (this.props.renderMessage) {
       return this.props.renderMessage(messageProps);
     }
-    return <Message {...messageProps}/>;
+    return this.state.isBubbleAnimationEnabled ? <FadeInUp><Message {...messageProps}/></FadeInUp> : <Message {...messageProps}/>;
   }
 
   renderScrollComponent(props) {
