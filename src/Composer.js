@@ -22,6 +22,7 @@ export default class Composer extends React.Component {
         accessibilityLabel={this.props.text || this.props.placeholder}
         enablesReturnKeyAutomatically={true}
         underlineColorAndroid="transparent"
+        editable={this.props.editable}
         {...this.props.textInputProps}
       />
     );
@@ -57,6 +58,7 @@ Composer.defaultProps = {
   textInputProps: null,
   multiline: true,
   textInputStyle: {},
+  editable: true
 };
 
 Composer.propTypes = {
@@ -68,4 +70,5 @@ Composer.propTypes = {
   textInputProps: React.PropTypes.object,
   multiline: React.PropTypes.bool,
   textInputStyle: TextInput.propTypes.style,
+  editable: React.PropTypes.bool.isRequired
 };
