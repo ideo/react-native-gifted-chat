@@ -15,6 +15,13 @@ export default class InputToolbar extends React.Component {
     return null;
   }
 
+  renderVoiceRecorder() {
+    if(this.props.renderVoiceRecorder) {
+      return this.props.renderVoiceRecorder(this.props);
+    }
+    return null;
+  }
+
   renderSend() {
     if (this.props.renderSend) {
       return this.props.renderSend(this.props);
@@ -50,6 +57,7 @@ export default class InputToolbar extends React.Component {
       <View style={[styles.container, this.props.containerStyle]}>
         <View style={[styles.primary, this.props.primaryStyle]}>
           {/*this.renderActions()*/}
+          {this.renderVoiceRecorder()}
           {this.renderComposer()}
           {this.renderSend()}
         </View>
