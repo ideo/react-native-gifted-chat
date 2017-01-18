@@ -29,6 +29,7 @@ export default class Composer extends React.Component {
         onSubmitEditing={() => {
           this.props.onSend({text: this.props.text}, true);
         }}
+        returnKeyType={'send'}
         {...this.props.textInputProps}
       />
     );
