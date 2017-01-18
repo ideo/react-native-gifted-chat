@@ -8,6 +8,10 @@ import Composer from './Composer';
 import Send from './Send';
 
 export default class InputToolbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this._composerRef = null;
+  }
   renderActions() {
     if (this.props.renderActions) {
       return this.props.renderActions(this.props);
@@ -26,17 +30,22 @@ export default class InputToolbar extends React.Component {
     if (this.props.renderSend) {
       return this.props.renderSend(this.props);
     }
-    return <Send {...this.props}/>;
+    return <Send blurComposer={this._blurComposer} {...this.props}/>;
   }
 
-  renderComposer() {
+  renderComposer = () => {
+    const composerProps = {
+      ...this.props,
+      getComposerRef: this._getComposerRef
+    }
+
     if (this.props.renderComposer) {
-      return this.props.renderComposer(this.props);
+      return this.props.renderComposer(composerProps);
     }
 
     return (
       <Composer
-        {...this.props}
+        {...composerProps}
       />
     );
   }
@@ -64,6 +73,13 @@ export default class InputToolbar extends React.Component {
         {this.renderAccessory()}
       </View>
     );
+  }
+
+  _blurComposer = () => {
+    this._composerRef.blur();
+  }
+  _getComposerRef = (ref) => {
+    this._composerRef = ref;
   }
 }
 

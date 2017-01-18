@@ -9,6 +9,7 @@ export default class Composer extends React.Component {
   render() {
     return (
       <TextInput
+        ref={(ref) => { this.props.getComposerRef(ref); }}
         placeholder={this.props.placeholder}
         placeholderTextColor={this.props.placeholderTextColor}
         multiline={this.props.multiline}
@@ -23,6 +24,11 @@ export default class Composer extends React.Component {
         enablesReturnKeyAutomatically={true}
         underlineColorAndroid="transparent"
         editable={this.props.editable}
+        blurOnSubmit={true}
+        autoCapitalize={'none'}
+        onSubmitEditing={() => {
+          this.props.onSend({text: this.props.text}, true);
+        }}
         {...this.props.textInputProps}
       />
     );
