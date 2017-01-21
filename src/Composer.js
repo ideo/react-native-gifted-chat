@@ -7,7 +7,6 @@ import {
 
 export default class Composer extends React.Component {
   render() {
-    console.log(this.props.composer);
     return (
       <TextInput
         ref={(ref) => { this.props.getComposerRef(ref); }}
